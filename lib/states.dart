@@ -1,9 +1,9 @@
-class MoviesState {}
+class MovieStates {}
 
-class MovieInitState extends MoviesState {}
+class MovieInitState extends MovieStates {}
 
-class MovieLoadingState extends MoviesState {}
+class MovieLoadingState extends MovieStates {}
 
-class MovieSuccesState extends MoviesState {}
+class MovieSuccessState extends MovieStates {}
 
-class MovieErrState extends MoviesState {}
+class MovieErrState extends MovieStates {}

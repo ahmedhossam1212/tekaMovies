@@ -11,24 +11,34 @@ class UI extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => MovieCubit()..getMovie(),
-      child: BlocConsumer<MovieCubit, MoviesState>(
+      child: BlocConsumer<MovieCubit, MovieStates>(
         listener: (context, state) {},
         builder: (context, state) {
           var cubit = MovieCubit.get(context);
           return Scaffold(
-            body: ListView.separated(
-                itemBuilder: (context, index) =>
-                    buildMovieItem(cubit.allList[index]),
-                separatorBuilder: (context, index) =>
-                    const SizedBox(height: 20),
-                itemCount: cubit.allList.length),
+            appBar: AppBar(),
+            body: Column(
+              children: [
+                Expanded(
+                  child: ListView.separated(
+                      itemBuilder: (context, index) =>
+                          buildItem(cubit.allList[index]),
+                      separatorBuilder: (context, index) =>
+                          const SizedBox(height: 10),
+                      itemCount: cubit.allList.length),
+                ),
+              ],
+            ),
           );
         },
       ),
     );
   }
 
-  Widget buildMovieItem(Movie model) => Column(
-        children: [Image.network(model.backdropPath), Text(model.title)],
+  Widget buildItem(Results model) => Column(
+        children: [
+          Image.network(model.backdropPath),
+          Text(model.title),
+        ],
       );
 }
